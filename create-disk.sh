@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 export DEVICE=$1
 
@@ -6,15 +6,16 @@ export DEVPART=${DEVICE}1
 export MOUNTPOINT=./mount
 
 sudo sfdisk ${DEVICE} < bootstrap.layout
-sudo mkfs.fat -F32 -n"BOOTSTRAP" $DEVPART
+sudo mkfs.ext4 -l "BOOTSTRAP" $DEVPART
 echo "Disk formatted."
 
 mkdir -p ${MOUNTPOINT}
 sudo mount -o umask=000 ${DEVPART} ${MOUNTPOINT}
 echo "Disk ${DEVPART} mounted in ${MOUNTPOINT}."
 
-sudo grub2-install --no-floppy --boot-directory=${MOUNTPOINT}/boot --target=i386-pc ${DEVICE}
-sudo cp grub.cfg ${MOUNTPOINT}/boot/grub2/grub.cfg
+sudo grub-install --no-floppy --boot-directory=${MOUNTPOINT}/boot --target=i386-pc \
+	--modules="zfs zpool search_fs_uuid part_gpt" ${DEVICE}
+sudo cp grub.cfg ${MOUNTPOINT}/boot/grub/grub.cfg
 echo "GRUB2 installed and configured."
 
 sync
