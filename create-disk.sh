@@ -13,7 +13,7 @@ sudo mount -o umask=000 ${DEVPART} ${MOUNTPOINT}
 echo "Disk ${DEVPART} mounted in ${MOUNTPOINT}."
 
 sudo grub-install --no-floppy --boot-directory=${MOUNTPOINT}/boot --target=i386-pc \
-	--modules="zfs zpool search_fs_uuid" ${DEVICE}
+	--modules="zfs search_fs_uuid" ${DEVICE}
 sudo cp grub.cfg ${MOUNTPOINT}/boot/grub/grub.cfg
 echo "GRUB2 installed and configured."
 
