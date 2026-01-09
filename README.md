@@ -1,10 +1,12 @@
-# Microserver Bootstrap
+# Microserver Bootstrap TrueNAS
 
-Microserver Bootstrap allows you to create a USB drive or microSD card that will allow your Microserver Gen8 to boot from the SATA ODD port.
+Microserver Bootstrap te permite crear una unidad USB o una tarjeta microSD que permita que tu Microserver Gen8 arranque desde el puerto SATA ODD.
 
-This setup is to be used when you want to use the server in AHCI SATA Mode instead of using the B120i RAID Controller.
+Esta configuración se usa cuando quieras usar el servidor en modo AHCI SATA en lugar de usar el controlador RAID B120i.
 
-When using AHCI Sata Mode, the server will be able to boot either from USB/microSD of from SATA1 Port (first HDD Bay).
+Al usar el Modo SATA AHCI, el servidor podrá arrancar tanto desde USB/microSD como desde el puerto SATA1 (la primera bahía de HDD).
+
+
 
 ## Requirements
 
@@ -13,7 +15,7 @@ When using AHCI Sata Mode, the server will be able to boot either from USB/micro
 
 ## Usage
 
-Before firing the `create-disk.sh` script, **PLEASE** make sure that you modify the /dev/sdX argument accordingly.
+Antes de lanzar el escript `create-disk.sh`, **PLEASE** asegurate de que el argumento /dev/sdX (dispositivo que apunta al pendrive) es correcto.
 
 ```
 ./create-disk.sh /dev/sdX
